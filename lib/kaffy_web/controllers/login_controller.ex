@@ -5,7 +5,7 @@ defmodule KaffyWeb.LoginController do
 
   def login(conn, _) do
     conn
-    |> put_layout({KaffyWeb.LayoutView, "app.html"})
+    |> put_layout({KaffyWeb.LayoutView, "bare.html"})
     |> put_view(KaffyWeb.ResourceView)
     |> render("login.html")
   end
