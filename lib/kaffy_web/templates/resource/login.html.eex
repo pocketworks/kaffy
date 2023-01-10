@@ -1,5 +1,7 @@
 
 <form method="post" action="/admin/login">
+
+  <input type="hidden" value="<%= Phoenix.Controller.get_csrf_token() %>" name="_csrf_token"/>
   <!-- Email input -->
   <div class="form-outline mb-4">
     <input type="email" id="email" name="email" class="form-control" />
