@@ -148,6 +148,14 @@ defmodule Kaffy.ResourceForm do
         textarea(form, field, opts)
 
       :integer ->
+        opts =
+          if is_function(options[:value_fn], 2) do
+            value = options[:value_fn].(data, field)
+            opts |> Keyword.put(:value, value)
+          else
+            opts
+          end
+
         number_input(form, field, opts)
 
       :float ->
