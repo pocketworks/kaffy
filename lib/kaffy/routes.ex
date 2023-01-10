@@ -28,6 +28,11 @@ defmodule Kaffy.Routes do
       end
 
       scope unquote(scoped), KaffyWeb do
+        pipe_through(:kaffy_browser)
+        get("/login", LoginController, :login)
+      end
+
+      scope unquote(scoped), KaffyWeb do
         pipe_through(unquote(pipes))
 
         get("/", HomeController, :index, as: :kaffy_home)
