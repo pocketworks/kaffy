@@ -112,7 +112,11 @@ defmodule Kaffy.ResourceForm do
           |> Map.get(field, "")
           |> Kaffy.Utils.json().encode!(escape: :html_safe, pretty: true)
 
-        textarea(form, field, [value: value, rows: 4, placeholder: "JSON Content"] ++ opts)
+        if options[:json_editor] do
+          raw(~s(<div id="#{form.name}_#{field}" class="json-editor" data-value="#{value}">))
+        else
+          textarea(form, field, [value: value, rows: 4, placeholder: "JSON Content"] ++ opts)
+        end
 
       :id ->
         case Kaffy.ResourceSchema.primary_key(schema) == [field] do
