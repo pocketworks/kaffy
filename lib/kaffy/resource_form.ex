@@ -107,10 +107,17 @@ defmodule Kaffy.ResourceForm do
         end)
 
       {:embed, _} ->
+        pretty =
+          if options[:json_editor] do
+            false
+          else
+            true
+          end
+
         value =
           data
           |> Map.get(field, "")
-          |> Kaffy.Utils.json().encode!(escape: :html_safe, pretty: true)
+          |> Kaffy.Utils.json().encode!(escape: :html_safe, pretty: pretty)
 
         if options[:json_editor] do
           raw(~s(<div id="#{form.name}_#{field}" class="json-editor" data-value="#{value}">))
