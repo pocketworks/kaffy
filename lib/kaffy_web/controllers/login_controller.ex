@@ -9,4 +9,18 @@ defmodule KaffyWeb.LoginController do
     |> put_view(KaffyWeb.ResourceView)
     |> render("login.html")
   end
+
+  def setup(conn, _) do
+    conn
+    |> put_layout({KaffyWeb.LayoutView, "bare.html"})
+    |> put_view(KaffyWeb.ResourceView)
+    |> render("setup.html")
+  end
+
+  def validation(conn, _) do
+    conn
+    |> put_layout({KaffyWeb.LayoutView, "bare.html"})
+    |> put_view(KaffyWeb.ResourceView)
+    |> render("validation.html")
+  end
 end
