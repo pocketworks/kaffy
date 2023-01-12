@@ -30,9 +30,9 @@ defmodule Kaffy.Routes do
       scope unquote(scoped), KaffyWeb do
         pipe_through(unquote(pipes))
 
-        get("/login", LoginController, :login)
-        get("/login/validation", LoginController, :validation)
-        get("/login/setup", LoginController, :setup)
+        # get("/login", LoginController, :login)
+        # get("/login/validation", LoginController, :validation)
+        # get("/login/setup", LoginController, :setup)
 
         get("/", HomeController, :index, as: :kaffy_home)
         get("/dashboard", HomeController, :dashboard, as: :kaffy_dashboard)
