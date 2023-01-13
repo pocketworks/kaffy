@@ -129,6 +129,19 @@ defmodule Kaffy.Utils do
     end
   end
 
+  @spec collect_links(Plug.Conn.t(), binary()) :: [any()]
+  def collect_links(_conn, location) do
+    case env(:custom_links) do
+      nil ->
+        []
+
+      fnunc ->
+        fnunc.call()
+        |> Enum.filter(fn link -> Map.get(link, :location, :sub) == location end)
+        |> Enum.sort_by(fn c -> Map.get(c, :order, 999) end)
+    end
+  end
+
   @doc """
   Returns a list of contexts as atoms.
 
@@ -335,6 +348,7 @@ defmodule Kaffy.Utils do
     stylesheets =
       Enum.map(exts, fn ext ->
         Code.ensure_loaded(ext)
+
         case function_exported?(ext, :stylesheets, 1) do
           true -> ext.stylesheets(conn)
           false -> []
@@ -344,6 +358,7 @@ defmodule Kaffy.Utils do
     javascripts =
       Enum.map(exts, fn ext ->
         Code.ensure_loaded(ext)
+
         case function_exported?(ext, :javascripts, 1) do
           true -> ext.javascripts(conn)
           false -> []
