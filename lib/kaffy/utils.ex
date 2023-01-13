@@ -136,7 +136,7 @@ defmodule Kaffy.Utils do
         []
 
       fnunc ->
-        fnunc.call()
+        fnunc.()
         |> Enum.filter(fn link -> Map.get(link, :location, :sub) == location end)
         |> Enum.sort_by(fn c -> Map.get(c, :order, 999) end)
     end
