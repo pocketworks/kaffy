@@ -28,6 +28,20 @@
                             </div>
                         </div>
                     <% end %>
+                    <%= if Kaffy.ResourceAdmin.resource_links(@my_resource, @conn) do %>
+                        <div class="float-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn dropdown-toggle btn-sm btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-wrench"></i> <span class="d-none d-md-inline">Links</span>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <%= for link <- Kaffy.ResourceAdmin.resource_links(@my_resource, @conn) do %>
+                                        <%= link %>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
                 </div>
             </div>
         </div>
