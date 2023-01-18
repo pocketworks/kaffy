@@ -149,7 +149,7 @@ defmodule Kaffy.Utils do
         entry.id
 
       fnunc ->
-        fnunc.()
+        fnunc.(entry)
     end
   end
 
