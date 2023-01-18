@@ -142,6 +142,17 @@ defmodule Kaffy.Utils do
     end
   end
 
+  @spec get_primary_key(any) :: any
+  def get_primary_key(entry) do
+    case env(:get_primary_key) do
+      nil ->
+        entry.id
+
+      fnunc ->
+        fnunc.()
+    end
+  end
+
   @doc """
   Returns a list of contexts as atoms.
 
