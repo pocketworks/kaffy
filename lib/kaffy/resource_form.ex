@@ -48,7 +48,7 @@ defmodule Kaffy.ResourceForm do
       end
 
     permission =
-      case changeset.meta do
+      case changeset.data |> Map.get(:__meta__) do
         %Ecto.Schema.Metadata{state: :build} -> Map.get(options, :create, :editable)
         _ -> Map.get(options, :update, :editable)
       end
