@@ -1,10 +1,12 @@
 <tr class="bg-light">
+    <%= if @my_resource[:schema].__schema__(:fields) |> Enum.member?(:id) do %>
     <th>
         <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input select-all kaffy-resource-checkbox" id="kaffy-select-all" name="all-resources" value=""/>
             <label class="custom-control-label" for="kaffy-select-all"></label>
         </div>
     </th>
+    <% end %>
     <%= for field <- @fields do %>
         <% field_name = Kaffy.ResourceSchema.kaffy_field_name(@my_resource[:schema], field) |> String.upcase() %>
         <% [{order_way, order_field}] = Kaffy.ResourceQuery.get_ordering(@my_resource, @params) %>
