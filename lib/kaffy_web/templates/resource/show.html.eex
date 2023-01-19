@@ -4,6 +4,14 @@
     <div><%= error %></div>
 <% end %>
 
+<%= if Kaffy.ResourceAdmin.resource_links(@my_resource, @conn) do %>
+    <div class="">
+        <%= for link <- Kaffy.ResourceAdmin.resource_links(@my_resource, @conn) do %>
+            <%= link %>
+        <% end %>
+    </div>
+<% end %>
+
 <div class="mt-3 grid-margin stretch-card">
     <div class="card shadow <%= Kaffy.ResourceError.form_error_border_class(@changeset, "border-left-success")%>">
         <div class="card-header">
@@ -23,20 +31,6 @@
                                         <%= form_tag(Kaffy.Utils.router().kaffy_resource_path(@conn, :single_action, @context, Kaffy.Utils.get_primary_key(@changeset.data), to_string(action_key)), method: :post) %>
                                             <input type="submit" name="submit" value="<%= options.name %>" class="dropdown-item" />
                                         </form>
-                                    <% end %>
-                                </div>
-                            </div>
-                        </div>
-                    <% end %>
-                    <%= if Kaffy.ResourceAdmin.resource_links(@my_resource, @conn) do %>
-                        <div class="float-right">
-                            <div class="btn-group">
-                                <button type="button" class="btn dropdown-toggle btn-sm btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-wrench"></i> <span class="d-none d-md-inline">Links</span>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <%= for link <- Kaffy.ResourceAdmin.resource_links(@my_resource, @conn) do %>
-                                        <%= link %>
                                     <% end %>
                                 </div>
                             </div>
