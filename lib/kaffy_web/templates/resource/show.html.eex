@@ -28,7 +28,7 @@
                                 </button>
                                 <div class="dropdown-menu">
                                     <%= for {action_key, options} <- Kaffy.ResourceAdmin.resource_actions(@my_resource, @conn) do %>
-                                        <%= form_tag(Kaffy.Utils.router().kaffy_resource_path(@conn, :single_action, @context, Kaffy.Utils.get_primary_key(@changeset.data), to_string(action_key)), method: :post) %>
+                                        <%= form_tag(Kaffy.Utils.router().kaffy_resource_path(@conn, :single_action, @context, @resource, Kaffy.Utils.get_primary_key(@changeset.data), to_string(action_key)), method: :post) %>
                                             <input type="submit" name="submit" value="<%= options.name %>" class="dropdown-item" />
                                         </form>
                                     <% end %>
