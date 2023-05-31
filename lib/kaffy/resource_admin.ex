@@ -310,6 +310,10 @@ defmodule Kaffy.ResourceAdmin do
     Utils.get_assigned_value_or_default(resource, :resource_links, nil, [conn], true)
   end
 
+  def resources_links(resource, conn) do
+    Utils.get_assigned_value_or_default(resource, :resources_links, nil, [conn], true)
+  end
+
   def list_actions(resource, conn) do
     Utils.get_assigned_value_or_default(resource, :list_actions, nil, [conn], false)
   end
