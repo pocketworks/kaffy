@@ -328,6 +328,10 @@ defmodule KaffyWeb.ResourceController do
         conn = put_flash(conn, :success, "Action performed successfully")
         redirect_to_resource(conn, context, resource, entry)
 
+      {:ok, entry, message} ->
+        conn = put_flash(conn, :success, message)
+        redirect_to_resource(conn, context, resource, entry)
+
       {:error, _} ->
         conn = put_flash(conn, :error, "A validation error occurred")
         redirect_to_resource(conn, context, resource, entry)
