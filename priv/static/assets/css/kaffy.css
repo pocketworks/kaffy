@@ -245,7 +245,7 @@ a.kaffy-order-field {
   font-style: italic;
 }
 
-.kaffy-resource-action-input .chosen-container {
+.modal .chosen-container {
   min-width: 200px !important;
   width: auto !important;
 }
