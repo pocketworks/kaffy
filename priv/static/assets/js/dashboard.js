@@ -95,7 +95,7 @@ $(document).ready(function () {
     var yTitle = currentChart.children("div.values").first().children("span.y-title").first().text();
     var yAxis = currentChart.children("div.values").first().children("span.y-axis").first().text().split(",").map(function (value) { return Number(value); });
     var ctx = document.getElementById(chartId);
-    var chartData = currentChart.children("div.values").first().children("chart-data").first().text();
+    var chartData = currentChart.children("div.values").first().children("span.chart-data").first().text();
     var data;
 
     try {
