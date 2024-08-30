@@ -5,6 +5,7 @@
                 <span class="x-axis"><%= Enum.join(@widget.content.x, ",") %></span>
                 <span class="y-axis"><%= Enum.join(@widget.content.y, ",") %></span>
                 <span class="y-title"><%= @widget.content.y_title %></span>
+                <span class="chart-data"><%= JASON.encode!(@widget.content.data) %></span>
             </div>
             <div class="clearfix">
                 <h4 class="card-title float-left"><%= @widget.title %></h4>

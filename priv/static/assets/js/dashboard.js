@@ -95,10 +95,13 @@ $(document).ready(function () {
     var yTitle = currentChart.children("div.values").first().children("span.y-title").first().text();
     var yAxis = currentChart.children("div.values").first().children("span.y-axis").first().text().split(",").map(function (value) { return Number(value); });
     var ctx = document.getElementById(chartId);
+    var chartData = currentChart.children("div.values").first().children("chart-data").first().text();
+    var data;
 
-    new Chart(ctx, {
-      type: 'line',
-      data: {
+    try {
+      data = JSON.parse(chartData);
+    } catch (e) {
+      data = {
         labels: xAxis,
         datasets: [{
           label: yTitle,
@@ -114,7 +117,12 @@ $(document).ready(function () {
           pointBorderWidth: 2,
           data: yAxis,
         }],
-      },
+      }
+    }
+
+    new Chart(ctx, {
+      type: 'line',
+      data: data,
       options: {
         responsive: true,
         maintainAspectRatio: true,
