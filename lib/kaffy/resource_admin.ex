@@ -410,6 +410,16 @@ defmodule Kaffy.ResourceAdmin do
     )
   end
 
+  def custom_index_count_query(conn, resource, query) do
+    Utils.get_assigned_value_or_default(
+      resource,
+      :custom_index_count_query,
+      query,
+      [conn, resource[:schema], query],
+      false
+    )
+  end
+
   def custom_show_query(conn, resource, query) do
     Utils.get_assigned_value_or_default(
       resource,

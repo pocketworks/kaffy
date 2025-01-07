@@ -34,6 +34,15 @@ defmodule Kaffy.ResourceQuery do
           {Kaffy.Utils.repo().all(custom_query), []}
       end
 
+    all =
+      case Kaffy.ResourceAdmin.custom_index_count_query(conn, resource, all) do
+        {custom_query, opts} ->
+          custom_query
+
+        custom_query ->
+          custom_query
+      end
+
     do_cache = if search == "" and Enum.empty?(filtered_fields), do: true, else: false
     all_count = cached_total_count(schema, do_cache, all, opts)
     {all_count, current_page}
