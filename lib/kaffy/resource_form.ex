@@ -417,9 +417,13 @@ defmodule Kaffy.ResourceForm do
               |> Enum.at(0)
 
             string_field =
-              case is_nil(popular_strings) or options.use_id do
-                true -> (Enum.at(string_fields, 0) || {:id}) |> elem(0)
-                false -> elem(popular_strings, 0)
+              if options.use_id do
+                :id
+              else
+                case is_nil(popular_strings) do
+                  true -> (Enum.at(string_fields, 0) || {:id}) |> elem(0)
+                  false -> elem(popular_strings, 0)
+                end
               end
 
             select(
