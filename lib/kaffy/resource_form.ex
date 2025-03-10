@@ -417,7 +417,7 @@ defmodule Kaffy.ResourceForm do
               |> Enum.at(0)
 
             string_field =
-              if Map.get(options, :use_id, false) do
+              if Map.get(opts, :use_id, false) do
                 :id
               else
                 case is_nil(popular_strings) do
