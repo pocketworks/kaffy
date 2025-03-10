@@ -134,7 +134,7 @@ defmodule Kaffy.ResourceForm do
       :binary_id ->
         case Kaffy.ResourceSchema.primary_key(schema) == [field] do
           true -> text_input(form, field, opts)
-          false -> text_or_assoc(conn, schema, form, field, opts, options)
+          false -> text_or_assoc(conn, schema, form, field, opts)
         end
 
       :string ->
@@ -348,7 +348,7 @@ defmodule Kaffy.ResourceForm do
     ]
   end
 
-  defp text_or_assoc(conn, schema, form, field, opts, options_field \\ []) do
+  defp text_or_assoc(conn, schema, form, field, opts) do
     actual_assoc =
       Enum.filter(Kaffy.ResourceSchema.associations(schema), fn a ->
         Kaffy.ResourceSchema.association(schema, a).owner_key == field
@@ -417,7 +417,7 @@ defmodule Kaffy.ResourceForm do
               |> Enum.at(0)
 
             string_field =
-              if options_field[:use_id] do
+              if Map.get(options :use_id) do
                 :id
               else
                 case is_nil(popular_strings) do
